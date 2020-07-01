@@ -10,4 +10,12 @@ base['age'][base.age > 0].mean() #busca média da idade excluindo as idades < 0
 
 base.loc[base.age < 0, 'age'] = 40.92 #altera idades negativas para média
 
-pd.isnull(base['age'])
+pd.isnull(base['age']) #identifica se no campo idade está vazio
+base.loc[pd.isnull(base['age'])] #somente os campos vazios
+
+#criação das variáveis para tratamento dos dados
+previsores = base.iloc[:, 1:4].values
+classe = base.iloc[:, 4].values
+
+import sklearn.impute import  
+imp = Imputer()
