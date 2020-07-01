@@ -17,5 +17,7 @@ base.loc[pd.isnull(base['age'])] #somente os campos vazios
 previsores = base.iloc[:, 1:4].values
 classe = base.iloc[:, 4].values
 
-import sklearn.impute import  
-imp = Imputer()
+from sklearn.impute import SimpleImputer
+imp = SimpleImputer(missing_values= 'NaN', strategy= 'mean', axis =0)
+imp = SimpleImputer.fit(previsores[:, 0:3])
+previsores[:, 0:3] = imp.transform(previsores[:, 0:3])
