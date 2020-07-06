@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 base = pd.read_csv('credit_dataA.csv') #variavel le o arquivo
 base.describe()  
@@ -18,6 +19,11 @@ previsores = base.iloc[:, 1:4].values
 classe = base.iloc[:, 4].values
 
 from sklearn.impute import SimpleImputer
-imp = SimpleImputer(missing_values= 'NaN', strategy= 'mean', axis =0)
-imp = SimpleImputer.fit(previsores[:, 0:3])
-previsores[:, 0:3] = imp.transform(previsores[:, 0:3])
+
+imputer = SimpleImputer(missing_values= NaN, strategy='mean')
+imputer = imputer.fit(previsores[:, 0:3])
+previsores[:, 0:3] = imputer.transform(previsores[:, 0:3])
+
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+previsores = scaler.fit_transform(previsores)
